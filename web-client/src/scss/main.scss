@@ -1,9 +1,42 @@
-.greeting {
-  font-size: xxx-large;
-  color: #de1e40;
-  background-color: aquamarine;
-  border: thin dashed chartreuse;
-  width: 50%;
-  margin: auto;
-  text-align: center;
+body {
+  margin: 0;
+}
+
+.navigationBar {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: antiquewhite;
+
+  a {
+    text-decoration: none;
+    padding: 10px;
+  }
+
+}
+
+.aboutSection {
+  padding: 40px;
+}
+
+.catalogSection {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+
+  .book {
+    width: 100px;
+    border: thin solid black;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+
+    &:hover {
+      transform: translate(1px, 1px);
+      background-color: aquamarine;
+      cursor: pointer;
+    }
+
+  }
+
 }
