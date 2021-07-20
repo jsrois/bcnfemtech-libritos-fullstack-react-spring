@@ -42,7 +42,7 @@ public class IntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*]", hasSize(2)))
                 .andExpect(jsonPath("$[0].title", equalTo("Moby Dick")))
-                .andExpect(jsonPath("$[0].author", equalTo("Herman Mellville")))
+                .andExpect(jsonPath("$[0].author", equalTo("Herman Melville")))
                 .andExpect(jsonPath("$[0].genre", equalTo("Aventuras")))
                 .andExpect(jsonPath("$[0].year", equalTo(1851)))
                 .andExpect(jsonPath("$[1].title", equalTo("Una habitación propia")))
