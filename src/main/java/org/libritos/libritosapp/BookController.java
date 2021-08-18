@@ -1,10 +1,12 @@
 package org.libritos.libritosapp;
+
 import org.libritos.libritosapp.domain.Book;
 import org.libritos.libritosapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,11 +21,14 @@ public class BookController {
     }
 
 
-
     @GetMapping("/books")
     public List<Book> allBooks() {
         return bookRepository.findAll();
     }
 
-
+    @PostMapping("/books")
+    public ResponseEntity<String> addBook(@RequestBody Book book) {
+        bookRepository.save(book);
+        return new ResponseEntity<>("Created",HttpStatus.OK);
+    }
 }

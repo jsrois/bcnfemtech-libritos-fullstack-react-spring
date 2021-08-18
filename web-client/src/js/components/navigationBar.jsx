@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 export const NavigationBar = () => (
     <nav className={"navigationBar"}>
         <Link to={"/catalog"}>Catálogo</Link>
+        <Link to={"/add-book"}>Nuevo</Link>
         <Link to={"/about"}>Quiénes Somos</Link>
     </nav>
 )

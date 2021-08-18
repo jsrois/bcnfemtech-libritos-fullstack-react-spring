@@ -25,6 +25,9 @@ export const App = () => {
             <Route path="/about">
                 <About/>
             </Route>
+            <Route path="/add-book">
+                <Form ></Form>
+            </Route>
         </Switch>
     </Router>
 
