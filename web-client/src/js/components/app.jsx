@@ -4,17 +4,28 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import {About} from "./about";
 import {Catalog} from "./catalog";
 import {useEffect, useState} from "react";
+import {BookForm} from "./BookForm";
+import {BookApi} from "../api/BookApi";
 
 
 export const App = () => {
 
     const [books, setBooks] = useState([])
+    const [needsUpdate, setNeedsUpdate] = useState(true)
+
+    const bookApi = new BookApi()
 
     useEffect(() => {
-        fetch("/books")
-            .then(response => response.json())
-            .then(setBooks)
-    }, [])
+        if (needsUpdate) {
+            bookApi.getBooks()
+                .then(setBooks)
+                .then(_ => setNeedsUpdate(false))
+        }
+    }, [needsUpdate])
+
+    const saveBook = book =>
+        bookApi.saveBook(book)
+            .then(_ => setNeedsUpdate(true))
 
     return <Router>
         <NavigationBar/>
@@ -26,7 +37,7 @@ export const App = () => {
                 <About/>
             </Route>
             <Route path="/add-book">
-                <Form ></Form>
+                <BookForm onSubmit={saveBook}/>
             </Route>
         </Switch>
     </Router>
