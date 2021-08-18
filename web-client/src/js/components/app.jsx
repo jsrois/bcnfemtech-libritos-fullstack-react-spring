@@ -14,7 +14,7 @@ export const App = () => {
         fetch("/books")
             .then(response => response.json())
             .then(setBooks)
-    })
+    }, [])
 
     return <Router>
         <NavigationBar/>
