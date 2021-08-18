@@ -10,10 +10,11 @@ import {BookApi} from "../api/BookApi";
 
 export const App = () => {
 
-    const [books, setBooks] = useState([])
-    const [needsUpdate, setNeedsUpdate] = useState(true)
-
     const bookApi = new BookApi()
+
+    const [books, setBooks] = useState([])
+
+    const [needsUpdate, setNeedsUpdate] = useState(true)
 
     useEffect(() => {
         if (needsUpdate) {

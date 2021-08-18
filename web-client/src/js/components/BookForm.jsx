@@ -11,30 +11,34 @@ export const BookForm = (props) => {
         return <Redirect to="/catalog"/>;
     }
 
-    return <Formik
-        initialValues={{
-            title: '',
-            author: '',
-            genre: '',
-            year: ''
-        }}
-        onSubmit={
-            (values) =>
-                props.onSubmit(JSON.stringify(values))
-                    .then(_ => setRedirect(true))
-        }
-    >
-        <Form>
-            <label htmlFor="title">title</label>
-            <Field id="title" name="title"/>
-            <label htmlFor="author">author</label>
-            <Field id="author" name="author"/>
-            <label htmlFor="genre">genre</label>
-            <Field id="genre" name="genre"/>
-            <label htmlFor="year">year</label>
-            <Field id="year" name="year"/>
+    return <div className="formBackground">
+        <div className="formCard">
+            <Formik
+                initialValues={{
+                    title: '',
+                    author: '',
+                    genre: '',
+                    year: ''
+                }}
+                onSubmit={
+                    (values) =>
+                        props.onSubmit(JSON.stringify(values))
+                            .then(_ => setRedirect(true))
+                }
+            >
+                <Form>
+                    <label htmlFor="title">title</label>
+                    <Field id="title" name="title"/>
+                    <label htmlFor="author">author</label>
+                    <Field id="author" name="author"/>
+                    <label htmlFor="genre">genre</label>
+                    <Field id="genre" name="genre"/>
+                    <label htmlFor="year">year</label>
+                    <Field id="year" name="year"/>
 
-            <button type="submit">Submit</button>
-        </Form>
-    </Formik>;
+                    <button type="submit">Submit</button>
+                </Form>
+            </Formik>
+        </div>
+    </div>;
 };

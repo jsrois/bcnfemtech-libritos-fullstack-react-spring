@@ -40,3 +40,28 @@ body {
   }
 
 }
+
+.formBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formCard {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  border: 1px solid black;
+  padding: 45px;
+  border-radius: 20px;
+
+  input {
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+}
