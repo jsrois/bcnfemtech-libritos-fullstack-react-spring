@@ -11,14 +11,14 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private String genre;
-    private int year;
+    private boolean isRead;
 
-    public Book(Long id, String title, String author, String genre, int year) {
+
+    public Book(Long id, String title, String author, boolean isRead) {
         this.title = title;
         this.author = author;
-        this.genre = genre;
-        this.year = year;
+
+        this.isRead = isRead;
     }
 
     public Book() {
@@ -49,19 +49,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getGenre() {
-        return genre;
+    public boolean getIsRead() {
+        return isRead;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public void setIsRead(boolean read) {
+        this.isRead = read;
     }
 }

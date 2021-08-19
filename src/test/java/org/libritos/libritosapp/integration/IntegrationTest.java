@@ -8,7 +8,6 @@ import org.libritos.libritosapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -41,8 +40,8 @@ public class IntegrationTest {
     void returnsTheAvailableBooks() throws Exception {
 
         List<Book> books = List.of(
-                new Book(1L, "Moby Dick", "Herman Melville", "Aventuras", 1851),
-                new Book(2L, "Una habitación propia", "Virginia Woolf", "Ensayo",1929)
+                new Book(1L, "Moby Dick", "Herman Melville", false),
+                new Book(2L, "Una habitación propia", "Virginia Woolf", true)
         );
 
         bookRepository.saveAll(books);
@@ -52,12 +51,10 @@ public class IntegrationTest {
                 .andExpect(jsonPath("$[*]", hasSize(2)))
                 .andExpect(jsonPath("$[0].title", equalTo("Moby Dick")))
                 .andExpect(jsonPath("$[0].author", equalTo("Herman Melville")))
-                .andExpect(jsonPath("$[0].genre", equalTo("Aventuras")))
-                .andExpect(jsonPath("$[0].year", equalTo(1851)))
+                .andExpect(jsonPath("$[0].isRead", equalTo(false)))
                 .andExpect(jsonPath("$[1].title", equalTo("Una habitación propia")))
                 .andExpect(jsonPath("$[1].author", equalTo("Virginia Woolf")))
-                .andExpect(jsonPath("$[1].genre", equalTo("Ensayo")))
-                .andExpect(jsonPath("$[1].year", equalTo(1929)));
+                .andExpect(jsonPath("$[1].isRead", equalTo(true)));
     }
 
     @Test
@@ -65,7 +62,7 @@ public class IntegrationTest {
 
         mockMvc.perform(post("/books")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Moby Dick\", \"author\": \"Herman Melville\", \"genre\": \"Aventuras\", \"year\": 1851}")
+                .content("{\"title\": \"Moby Dick\", \"author\": \"Herman Melville\", \"isRead\": true }")
         ).andExpect(status().is(200));
 
         var books = bookRepository.findAll();
@@ -73,8 +70,7 @@ public class IntegrationTest {
         assertThat(books, contains(allOf(
                 hasProperty("title", is("Moby Dick")),
                 hasProperty("author", is("Herman Melville")),
-                hasProperty("genre", is("Aventuras")),
-                hasProperty("year", is(1851)))
+                hasProperty("isRead", is(true)))
         ));
     }
 }

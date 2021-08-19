@@ -17,8 +17,7 @@ export const BookForm = (props) => {
                 initialValues={{
                     title: '',
                     author: '',
-                    genre: '',
-                    year: ''
+                    isRead: ''
                 }}
                 onSubmit={
                     (values) =>
@@ -26,18 +25,18 @@ export const BookForm = (props) => {
                             .then(_ => setRedirect(true))
                 }
             >
-                <Form>
+                {({values}) => <Form>
                     <label htmlFor="title">title</label>
                     <Field id="title" name="title"/>
                     <label htmlFor="author">author</label>
                     <Field id="author" name="author"/>
-                    <label htmlFor="genre">genre</label>
-                    <Field id="genre" name="genre"/>
-                    <label htmlFor="year">year</label>
-                    <Field id="year" name="year"/>
+                    <label>
+                        <Field type="checkbox" name="isRead"/>
+                        {`${values.isRead}`}
+                    </label>
 
                     <button type="submit">Submit</button>
-                </Form>
+                </Form>}
             </Formik>
         </div>
     </div>;

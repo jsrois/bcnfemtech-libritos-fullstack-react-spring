@@ -31,6 +31,9 @@ export const App = () => {
     return <Router>
         <NavigationBar/>
         <Switch>
+            <Route path="/" exact>
+                <Catalog books={books}/>
+            </Route>
             <Route path="/catalog">
                 <Catalog books={books}/>
             </Route>
