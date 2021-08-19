@@ -33,6 +33,10 @@ body {
     display: flex;
     justify-content: space-between;
 
+    &--read {
+      border: 2px solid darkolivegreen;
+    }
+
     &:hover {
       transform: translate(1px, 1px);
       background-color: aquamarine;

@@ -32,7 +32,6 @@ export const BookForm = (props) => {
                     <Field id="author" name="author"/>
                     <label>
                         <Field type="checkbox" name="isRead"/>
-                        {`${values.isRead}`}
                     </label>
 
                     <button type="submit">Submit</button>
